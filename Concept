@@ -1,0 +1,315 @@
+Key Git Concepts
+
+Repository - A Folder where Git tracks your project and its history.
+Clone - Make a copy of the remote repository on your compute
+Stage - Tell Git which changes you want to save next.
+Commit - Save a snapshot of your staged changes.
+Branch - Work on different versions of features at the same time
+Merge - Combine changes from different branches.
+Pull - Get the latest changes from a remote repository
+Push - Send your changes to a remote repository 
+
+Set up name and email global in git:
+
+git config --global user.name "Sample"
+git config --global user.email "Sample@sample.com"
+
+--global for every repo on your compute
+--local (default) current repo
+
+
+git config --list
+git config user.name
+git config user.email
+git config code.editor
+
+git config --global --unset user.name 
+git config --global --unset user.email
+git config --global --unset code.editor
+
+Config Levels:
+
+git config --system  (all users)
+git config --global (current user)
+git config --local (current repo)
+
+Local settings only apply to the current repo - git config user.name "Project Name" 
+Global settings apply to all repositories for the current user - git config --global user.name "Global Name"
+System settings apply to all repositories for all users - git config --system user.name "System Name"
+
+Initialize Git 
+
+git init - git creats a hidden folder called .git inside your project 
+
+what is repository?
+
+a git repository is a folder that git tracks for changes, the repository stores all your projects history and versions.
+
+ls -a - show hidden .git folder
+
+ls - list files in the folder
+
+pwd - to check the current directory
+
+git status - check which files are tracked
+
+what is a tracked file? 
+
+a tracked file is a file that Git is watching for changes, to make a file tracked, you need to add it to the staging area.
+
+what is the staging environment? 
+
+the staging environment or staging area is like a waiting room for your changes.
+
+you use it to tell git exactly which files you want to include in your next commit.
+
+this gives you control over what goes into your project history.
+
+git add <file> : stage file
+git add --all or git add -A : stage all changes
+git status : see what staged
+git rm --cached <file> - unstage file
+
+what is commit? 
+
+A commit is like a save point in your project.
+
+it records a snapshop of your files at a certain time, with a message describing what changed.
+
+git commit -m "message" : commit staged changes with a message
+git commit -a -m "message" : commit all tracked changes 
+git log - see commit history
+git commit (no -m)
+git commit --allow-empty -m "Start project" : create an empty commity
+git commit --no-edit : use previous commit message (no editor)
+git commit --amend --no-edit : quickly add staged changes to last commit, keep message
+git commit -m "message but forgot to git add a file, just add it commit again. or use commit --amend to add it your last commit
+typo: git commit --ammend -m "corrected message" to fix the last commit message
+accidentally commited the wrong files? 
+git reset --soft HEAD~1 to undo the last commit and keep your changes staged
+
+git log --oneline
+
+git log --stat : to see which files chnaged in each commit
+
+key commands for tagging
+
+git tag <tagname>
+git tag -a <tagname> -m "message" - create an annotated tag
+git tag <tagname> <commit-hash> - tag a specific commit
+git tag - List tags
+git tag show <tagname> - show tag details
+
+what is a tag?
+
+a tag is git is like a label or bookmark for a specific commit
+
+tags are most ofter used to mark important points in your project history, like releases (v1.0 or v2.0)
+
+tags are simple and reliable way to keep track of versions and share them with your team or users.
+
+common tag types
+
+releases, miliestones, deployment, hotfixes
+
+git tag v1.0
+
+git tag -a v1.0 -m "version 1.0 release"
+
+git show v1.0
+
+push tags to remote ->  git push origin v1.0 / git push --tags
+
+git push : does not push your tags 
+
+delete tags: git tag -d v1.0
+
+delete tags remotely:  git push origin --delete tag v1.0
+
+update / replace a tag (force push) - if you need to move a tag to a different commit and update the remote, use --force
+
+git tag -f v1.0 <new-commit-hash>
+
+git push --force origin v1.0
+
+
+git stash 
+
+key commands for stashing
+
+git stash - stash your changes
+git stash push -m "message" - stash with a message
+git stash list -list all stashes
+git stash branch <branchname> - create a branch from a stash
+
+what is git stash? why use it?
+
+sometimes you need to quickly switch tasks or fix a bug, but youre not ready to commit your work
+
+git stash lets you have your uncommitted changes and return to a clean working directory 
+
+common use cases:
+
+switch branches safely : save your work before changing branches
+handle emergencies: stash your work to fix something urgent then restore it
+keep you work-in-progress safe: avoid messy commits or losing changes
+
+git stash 
+tracked files - both stage and unstage are stashed by default
+untracked files - new files not yet added to git are not stashed by default
+to stash untracked files too, use git stash -u or --include-untracked
+
+git stash push -m : add a message to remember what you stashed
+git stash push -m "WIP: homepage redesign" 
+git stash list 
+git stash show : show latest stash
+
+git stash show -p 
+
+git stash apply - apply latest stash
+
+git stash apply stash@{n} - restore a specific stash from the list
+
+git stash pop - apply the latest stash and remove it from the stasck
+
+git stash drop stash@{0}
+
+git stash clear - clear 
+
+
+Git History
+
+What is Git History? 
+Git keeps a detailed record of every change made to your project
+
+You can use history commands to see what changed,when and who made the change
+
+git log - show full commit history
+git log --oneline - show a summary of commits
+git show <commit> - show details of specific commit
+git diff - see unstaged changes
+git diff --staged - see staged changes
+
+git diff <commit1> <commit2> - Compare two commits
+
+git log --author="name"
+
+in git log you use this '/' to search and q for quit
+
+
+git log --since="2 weeks ago"
+
+git log --stat - show files changed per commit
+
+git log --graph see a simple graph of your branch history
+
+git help <command> - see the manual page for a command
+git <command> --help - see help for a command (same as a above)
+git <command> -h see a quick summry of optios
+git help --all list possible git commands
+git help -g - list guides and concepts 
+
+git add -h 
+
+usage:git add [options] [--] ....
+-n, --dry-run 
+-v, --verbose
+-i, -interactive : interactive picking
+-p, --patch : select hunks interactively
+-e, --edit : edit current diff and apply
+-u, --update : updated tracked files
+-A, --all add changes from all tracked and untracked files
+
+What is a Git Branch?
+In Git, a branch is like a separate workspace where you can make changes and try new dieas without affectingthe main project. 
+Think of its a parallel universe for your code.
+
+git branch <name>
+git branch 
+git checkout <name>
+
+git add --all
+git status
+git commit -m "Message"
+
+git add index.html
+git commit -m "updated index.html with emergency fix"
+
+git branch -d hello-world-images
+
+rename a branch: git branch -m old-name new-name
+list all branch: git branc
+switch branch: git checkout branch-name or git switch branch-name
+delete a branch (not merged) git branch -D branch-name
+see which branch you're on : git status
+
+What is Merging in Git?
+
+Merging in Git means combinig the changes from one branch into another.
+
+Common git merge options
+
+git merge - merge a branch into your current branch
+git merge --no-ff always create a merge commit
+git merge --squash - combine changes into a single commit
+git merge --abort - abort a merge in progress
+
+Merging Branches (git merge)
+
+To combine the changes from one branch into another, use git merge.
+
+Usually, you first switch to the branch you want to merge into (often main or master), then run merge command with the branch name you want to combine in.
+
+First, we need to change to the master branch:
+
+git checkout master
+
+git merge emergency-fix
+
+git branch -d emergency-fix
+
+Non-Fast-Forward Merge (git merge --no-diff)
+
+By default, if your branch can be merged with a fast-forwad (no new commits on the base), Git just moves the branch pointer forward.
+
+If you want to always create a merge commit (to keep history clearer), use git merge --no-ff branchname.
+
+Squash Merge (git merge --squash)
+
+if you want to combine all the changes from a branch into a single commit (instead of keeping every commit), use git merge --squash branchname.
+
+This is useful for cleaning up commit history before merging.
+
+git merge --squash feature-branch 
+
+Aborting Merge a (git merge --abort)
+
+if you run into trouble during a merge (like a conflict you don't want to resolve), you can cancel the merge and go back to how things were before with git merge --abort
+
+git merge --abort
+
+GIT WORKFLOW
+
+Git Workflow Commands Overview
+
+Working Directory - Where you make changes
+git add - Stage changes
+git commit - Save changes to your repository
+git push - Share changes with others
+git status - Check what's going on
+Undo/Amend - Fix mistakes (git restore, git reset, git commit --amend)
+
+Three Areas of Git
+
+Working Directory: Where you make changes to your files
+Staging Area (Index): Were you prepare changes before committing.
+Repository: Where your committed history is stored.
+
+Best Practices for Gif Workflow
+
+Commit frequently with clear, meaning messages.
+Check your status often with git status to avoid surprises.
+Stage only what you intend to commit. Use gid add <file> for precision
+Push regularly to back up your work and share with others.
+Review your changes with git diff before committing
+

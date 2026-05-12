@@ -1,0 +1,55 @@
+Branch: A branch is a parallel version of your repository. Used to develop features independently
+git branch feature/login
+
+Checkout: Switch to a different branch or commit
+git checkout main
+
+Clone: Create a local copy of a remote repository
+git clone https://github.com/user/repo.git
+
+Commit: A Snapshot of your changes in the repository
+git commit -m "Add login feature"
+
+Conflict: When a Git can't automatically merge changes from different commits or branches. You must resolve the diffrences manually.
+
+Fetch: Download changes from a remote repository without merging.
+git fetch origin
+
+Fork: A personal copy of someonle else's repository, usuall on a platform like GitHub.
+
+Index (Staging Area): The Index (also called the Staging Area) is where changes are prepared before committing.
+git add file.txt
+
+Merge: Combine changes from different branches.
+git merge feature/login
+
+Origin: The default name for your main remote repository. You can rename or have multiple remotes if needed.
+git remote add origin https://github.com/user/repo.git
+
+Pull: Fetch and merge changes from a remote repository
+git pull origin main
+
+Push: Upload your commites to a remote repository.
+git push origin main
+
+Rebase: Move or combine a sequence of commits to a new base commit.
+git rebase main
+
+Remote: A version of your repository hosted on the internet or network.
+git remove -v
+
+Repository: The database where you project's history is stored.
+git init
+
+Stash: Temporarily sabe changes that aren't ready to commit
+git stash
+
+Tag: Mark a specific commit as important, usually for releases
+git tag v1.0
+
+HEAD: is a reference to the current commit your working directory is based on. Usually points to the latest commit on your current branch.
+git log --oneline
+
+Upstream:
+An "upstreamn" branch is the default branch that your branch tracks and pulls from, usually on a remote repository.
+git push --set-upstream origin main
