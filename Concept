@@ -357,3 +357,43 @@ git log origin/master
 
     ...
     ...
+
+git diff origin/master
+    diff --git a/README.md b/README.md
+    index 23a0122..a980c39 100644
+    --- a/README.md
+    +++ b/README.md
+    @@ -2,6 +2,4 @@
+    Hello World repository for Git tutorial
+    This is an example repository for the Git tutoial on https://www.w3schools.com
+
+    -This repository is built step by step in the tutorial.
+    -
+    -It now includes steps for GitHub
+    +This repository is built step by step in the tutorial.
+    \ No newline at end of file
+
+git merge - combines the current branch with specified branch
+
+git merge origin/master
+    Updating e0b6038..d29d69f
+    Fast-forward
+    README.md | 4 +++-
+    1 file changed, 3 insertions(+), 1 deletion(-)
+
+git status
+
+git pull it us used to pull all changes from a remote repository into the branch you are working on.
+
+git pull origin
+    remote: Enumerating objects: 5, done.
+    remote: Counting objects: 100% (5/5), done.
+    remote: Compressing objects: 100% (3/3), done.
+    remote: Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+    Unpacking objects: 100% (3/3), 794 bytes | 1024 bytes/s, done.
+    From https://github.com/w3schools-test/hello-world
+        a7cdd4b..ab6b4ed  master       -> origin/master
+    Updating a7cdd4b..ab6b4ed
+    Fast-forward
+    README.md | 2 ++
+    1 file changed, 2 insertions(+)
