@@ -6,7 +6,4 @@ well well
 test for git fetch
 
 
-test test test 
-
-
-HAHAHAHAH
+git fetch origin
